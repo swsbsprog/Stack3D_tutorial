@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public GameObject cube;
+    public Cube cube;
     public Vector3 cameraPoffset = new Vector3(20, 20, 20);
+    public Transform cameraTr;
+    private void Awake() =>cameraTr = Camera.main.transform;
     void Start()
     {
-        previousCubeTr = cube.transform;
-        MoveCamera();
+        previousCubeTr = cube;
+        InitCamera();
     }
 
     public int level;
@@ -24,20 +26,21 @@ public class StageManager : MonoBehaviour
     }
 
     [ContextMenu("Set Camera")]
-    private void MoveCamera()
+    private void InitCamera()
     {
-        var cubeTr = previousCubeTr != null ? previousCubeTr : cube.transform;
+        var cubeTr = cube.transform;
         var newPos = cubeTr.position + cameraPoffset;
-        Camera.main.transform.position = newPos;
-        Camera.main.transform.LookAt(cubeTr);
+        cameraTr.position = newPos;
+        cameraTr.LookAt(cubeTr);
     }
+    void MoveCamera()=> cameraTr.Translate(0, cube.ChildScale.y, 0);
 
-    Transform previousCubeTr;
+    Cube previousCubeTr;
     private void MakeCube()
     {
         var newRot = Quaternion.Euler(0, GetRotation(level), 0);
-        var newPos = previousCubeTr.position;
-        newPos.y += previousCubeTr.localScale.y;
+        var newPos = previousCubeTr.ChildPos;
+        newPos.y += previousCubeTr.ChildScale.y;
 
         var newCube = Instantiate(previousCubeTr, newPos, newRot);
 
@@ -47,7 +50,7 @@ public class StageManager : MonoBehaviour
             previousCubeTr.GetComponentInChildren<Animator>().enabled = false;
         }
 
-        previousCubeTr = newCube.transform;
+        previousCubeTr = newCube;
         level++;
     }
 

@@ -675,6 +675,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773318751}
+  - component: {fileID: 1773318752}
   m_Layer: 0
   m_Name: MovingCube
   m_TagString: Untagged
@@ -698,6 +699,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773318752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773318750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f1af283cf3a354aafce6a41807d1fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1786708684
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0ce63623aa8684c805941415653674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 1773318750}
+  cube: {fileID: 1773318752}
   cameraPoffset: {x: 20, y: 20, z: 20}
   level: 0
 --- !u!4 &1786708686
